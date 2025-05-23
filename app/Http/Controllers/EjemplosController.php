@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ejemplos;
+use App\Models\Ejemplo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +26,7 @@ class EjemplosController extends Controller
      */
     public function create()
     {
-        //
+        return view("projects/new");
     }
 
     /**
@@ -37,8 +37,11 @@ class EjemplosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    Ejemplo::create($request->only(['titulo', 'descripcion']));
+    return redirect('project/')
+        ->with('success','Proyecto creado satisfactoriamente');
     }
+
 
     /**
      * Display the specified resource.
@@ -57,10 +60,11 @@ class EjemplosController extends Controller
      * @param  \App\Models\Ejemplos  $ejemplos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ejemplos $ejemplos)
+    public function edit($id)
     {
-        //
-    }
+        $ejemplo = Ejemplo::findOrFail($id); // Buscar el proyecto por ID o lanzar 404 si no existe
+        return view("projects.update", compact("ejemplo")); // Ahora sí pasas la variable correctamente
+    }       
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +73,7 @@ class EjemplosController extends Controller
      * @param  \App\Models\Ejemplos  $ejemplos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ejemplos $ejemplos)
+    public function update(Request $request, Ejemplo $ejemplo)
     {
         //
     }
@@ -80,7 +84,7 @@ class EjemplosController extends Controller
      * @param  \App\Models\Ejemplos  $ejemplos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ejemplos $ejemplos)
+    public function destroy(Ejemplos $ejemplo)
     {
         //
     }

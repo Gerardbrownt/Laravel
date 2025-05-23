@@ -72,7 +72,7 @@
     <div class="col-9">
       
 
-        <p class="fs-1">.fs-1 text</p>
+        <p class="fs-1">Proyectos</p>
         <table class="table">
   <thead>
     <tr>
